@@ -4,8 +4,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 STATUS_CHOICES = (
-    ('pro', 'pro'),
-    ('simple', 'simple'),
+    ('host', 'host'),
+    ('guest', 'guest'),
 )
 
 
@@ -14,6 +14,10 @@ class UserProfile(AbstractUser):
                                       null=True, blank=True
                                       )
     phone_number = PhoneNumberField(null=True, blank=True)
+    STATUS_CHOICES = (
+        ('pro', 'pro'),
+        ('simple', 'simple'),
+    )
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     status = models.CharField(choices=STATUS_CHOICES, default='simple')
     date_registered = models.DateTimeField(auto_now_add=True)
